@@ -55,5 +55,5 @@ function addChips(chips){
 }
 
 document.querySelector('button').onclick = function(){
-    chips('hello'); //указание атрибута
+    chips('hello'); 
 }
