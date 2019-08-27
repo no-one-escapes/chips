@@ -1,0 +1,59 @@
+-----html-----
+
+<button>Push</button>
+
+-----css-----
+
+.toasts {
+    padding: 10px 20px;
+    margin: 20px 10px;
+    border-radius: 12px;
+    background: rgba(64, 224, 208,.6);
+    color: #fff;
+
+}
+
+.toasts-field {
+    width: 200px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+
+-----js-----
+
+function toasts(message, timeRemove = 3000){
+    //if (timeRemove === undefined) timeRemove = 3000;
+    let toasts = document.createElement('div');
+    toasts.classList.add('toasts');
+    toasts.innerHTML = message;
+    // document.querySelector('body').appendChild(toasts);
+    addToasts(toasts); 
+    setTimeout(function(){deleteChips(chips)}, timeRemove)
+}
+
+document.querySelector('button').onclick = function(){
+    toasts('hello'); 
+}
+
+function deleteChips(element){
+    element.remove();
+    let allToasts = document.querySelectorAll('.toasts-field .chips')
+    if (allToasts.length == 0) document.querySelector('.toasts-field').remove();
+}
+
+function addToasts(toasts){
+    let toastsField = document.querySelector('.toasts-field');
+    if (toastsField) {
+        toastsField.appendChild(toasts);
+    } else {
+        let toastsField = document.createElement('div');
+        toastsField.classList.add('toasts-field');
+        document.querySelector('body').appendChild(toastsField);
+        toastsField.appendChild(toasts);
+    }
+}
+
+document.querySelector('button').onclick = function(){
+    toasts('hello'); //указание атрибута
+}
